@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Recevez votre code</h1>
+<p>Bonjour {{ firstname }},</p>
+<p>Vous pourrez modifier votre mot de passe en renseignant le code qui se trouve ci-dessous sur notre site :</p>
+<p>{{ ActivationCode }}</p>
+<p>Le code est valable 10 minutes</p>
+{% endblock %}

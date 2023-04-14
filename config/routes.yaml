@@ -1,0 +1,25 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+api_login_check:
+    path: /api/login
+api_me:
+    path: '/api/me'
+    methods: ['GET']
+    defaults:
+        _controller: '\App\Controller\SecurityController::me'
+        _api_resource_class: 'App\Entity\User'
+api_send_reset_password:
+    path: '/api/resetpasswordmail'
+    methods: ['POST']
+    defaults:
+        _controller: 'App\Controller\ResetPasswordController::resetPasswordEmail'
+api_add_images:
+    path: 'api/add-images'
+    methods: ['POST']
+    defaults: 
+        _controller: 'App\Controller\ImageController::addImage'
+        _api_resource_class: 'App\entity\ImageArticle'
+        
