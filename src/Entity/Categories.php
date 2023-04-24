@@ -6,13 +6,18 @@ use App\Repository\CategoriesRepository;
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Delete;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoriesRepository::class)]
 #[ApiResource(paginationEnabled: false,
-operations: [new GetCollection(),])]
+operations: [new GetCollection(),
+new Post(),
+new Delete(),
+])]
 class Categories
 {
     #[ORM\Id]
@@ -22,6 +27,7 @@ class Categories
 
     #[ORM\Column(length: 50)]
     #[Groups(['article', 'user-advert'])]
+    #[ApiProperty(types: ["https://schema.org/name"])]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Article::class)]

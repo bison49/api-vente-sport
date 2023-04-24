@@ -7,11 +7,13 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Controller\ImageController;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\GetCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ImageArticleRepository::class)]
 #[ApiResource(operations: [new Get(),
+new GetCollection(),
 new Post(controller: ImageController::class, name: 'app-add-images'),
 ])]
 class ImageArticle

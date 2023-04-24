@@ -28,7 +28,7 @@ operations: [new Get(normalizationContext: ['groups' => ['article']]),
 new Post(),
 new Delete(),
 new GetCollection(normalizationContext: ['groups' => ['article']]),
-new Patch(),
+new Patch(denormalizationContext: ['groups' => ['article']]),
 ])]
 #[ApiFilter(SearchFilter::class, properties: ['name' => 'partial', 'categorie.name' => 'exact', 'seller.userInfo.adress.city' => 'exact', 'seller.userInfo.adress.postCode' => 'exact'])]
 #[ApiFilter(RangeFilter::class, properties: ['price'])]

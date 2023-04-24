@@ -5,10 +5,16 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\UserInfoRepository;
 use Doctrine\DBAL\Types\Types;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;;
 
 #[ORM\Entity(repositoryClass: UserInfoRepository::class)]
+#[ApiResource(operations: [
+new GetCollection(),
+new Get(normalizationContext: ['groups' => ['user-profile']])
+])]
 class UserInfo
 {
     #[ORM\Id]

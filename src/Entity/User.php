@@ -12,6 +12,7 @@ use App\Repository\UserRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Metadata\GetCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -21,11 +22,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ApiResource(operations: [new Get(normalizationContext: ['groups' => ['user-advert']],
 uriTemplate: '/user-advert/{id}', requirements: ['id' => '\d+']),
 new Get(),
+new GetCollection(),
 new Get(normalizationContext: ['groups' => ['user-password']], uriTemplate: '/user-password/{id}', requirements: ['id' => '\d+']),
-new Get(controller: SecurityController::class, name: 'app-me'),
+new Get(controller: SecurityController::class, name: 'app-me',),
 new Post(),
 new Post(controller: ResetPasswordController::class, name: 'app-reset-password-email'),
-new Patch(normalizationContext: ['groups' => ['user-profile']]),
+new Patch(normalizationContext: ['groups' => ['user-profile']], denormalizationContext: ['groups' => ['user-profile']],),
 new Patch(denormalizationContext: ['groups' => ['patch-password']], uriTemplate: '/update-forgot-password/{id}', requirements: ['id' => '\d+'])])]
 #[UniqueEntity(fields: 'email',message: "Cet e-mail est déjà associé à un compte")]
 #[UniqueEntity(fields: 'username', message: "Ce nom d'utilisateur est déjà utilisé")]
