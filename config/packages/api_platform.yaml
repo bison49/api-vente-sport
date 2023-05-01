@@ -13,4 +13,4 @@ api_platform:
         json:     ['application/merge-patch+json']
         jsonapi:  ['application/vnd.api+json']
     defaults:
-       pagination_items_per_page: 20
+       pagination_items_per_page: 10

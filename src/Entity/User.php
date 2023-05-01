@@ -25,7 +25,7 @@ new Get(),
 new GetCollection(),
 new Get(normalizationContext: ['groups' => ['user-password']], uriTemplate: '/user-password/{id}', requirements: ['id' => '\d+']),
 new Get(controller: SecurityController::class, name: 'app-me',),
-new Post(),
+new Post(denormalizationContext: ['groups' => ['user-register']],),
 new Post(controller: ResetPasswordController::class, name: 'app-reset-password-email'),
 new Patch(normalizationContext: ['groups' => ['user-profile']], denormalizationContext: ['groups' => ['user-profile']],),
 new Patch(denormalizationContext: ['groups' => ['patch-password']], uriTemplate: '/update-forgot-password/{id}', requirements: ['id' => '\d+'])])]
@@ -36,27 +36,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['article', 'patch-password', 'user-profile'])]
+    #[Groups(['article', 'patch-password', 'user-profile', 'user-register'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Groups(['user-profile'])]
+    #[Groups(['user-profile', 'user-register'])]
     private ?string $email = null;
 
     #[ORM\Column]
-    #[Groups(['user-profile'])]
+    #[Groups(['user-profile', 'user-register'])]
     private array $roles = [];
 
     #[ORM\Column(length: 255)]
-    #[Groups(['patch-password', 'user-password'])]
+    #[Groups(['patch-password', 'user-password', 'user-register'])]
     private ?string $password = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[Groups(['article', 'user-advert','user-profile'])]
+    #[Groups(['article', 'user-advert','user-profile', 'user-register'])]
     private ?UserInfo $userInfo = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['article', 'user-advert', 'user-profile'])]
+    #[Groups(['article', 'user-advert', 'user-profile', 'user-register'])]
     private ?string $username = null;
 
     #[ORM\OneToMany(mappedBy: 'buyer', targetEntity: Article::class)]

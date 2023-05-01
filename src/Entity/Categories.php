@@ -27,7 +27,6 @@ class Categories
 
     #[ORM\Column(length: 50)]
     #[Groups(['article', 'user-advert'])]
-    #[ApiProperty(types: ["https://schema.org/name"])]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Article::class)]

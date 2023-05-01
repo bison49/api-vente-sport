@@ -20,15 +20,15 @@ class Adress
     private ?int $id = null;
 
     #[ORM\Column(length: 150)]
-    #[Groups(['user-profile'])]
+    #[Groups(['user-profile', 'user-register'])]
     private ?string $street = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['article', 'user-advert','user-profile'])]
+    #[Groups(['article', 'user-advert','user-profile', 'user-register'])]
     private ?string $city = null;
 
     #[ORM\Column(length: 10)]
-    #[Groups(['article', 'user-advert', 'user-profile'])]
+    #[Groups(['article', 'user-advert', 'user-profile', 'user-register'])]
     private ?string $postCode = null;
 
     public function getId(): ?int

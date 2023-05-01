@@ -23,39 +23,39 @@ class UserInfo
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['user-profile'])]
+    #[Groups(['user-profile', 'user-register'])]
     private ?string $fistname = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['user-profile'])]
+    #[Groups(['user-profile', 'user-register'])]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 20, nullable: true)]
-    #[Groups(['article', 'user-profile'])]
+    #[Groups(['article', 'user-profile', 'user-register'])]
     private ?string $phone = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Groups(['user-advert', 'user-profile'])]
+    #[Groups(['user-advert', 'user-profile', 'user-register'])]
     private ?\DateTimeInterface $creationDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    #[Groups(['user-profile'])]
+    #[Groups(['user-profile', 'user-register'])]
     private ?\DateTimeInterface $lastConnectionDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    #[Groups(['user-profile'])]
+    #[Groups(['user-profile', 'user-register'])]
     private ?\DateTimeInterface $lastUpdateDate = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Groups(['user-profile'])]
+    #[Groups(['user-profile', 'user-register'])]
     private ?\DateTimeInterface $birthdate = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[Groups(['article', 'user-advert', 'user-profile'])]
+    #[Groups(['article', 'user-advert', 'user-profile', 'user-register'])]
     private ?Adress $adress = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['user-profile'])]
+    #[Groups(['user-profile', 'user-register'])]
     private ?bool $isActive = null;
 
     public function getId(): ?int
